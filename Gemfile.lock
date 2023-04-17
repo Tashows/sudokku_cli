@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    sudokku_cli (0.1.1)
+    sudokku_cli (0.1.2)
       json
       net-http
       netrc
