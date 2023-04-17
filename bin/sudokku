@@ -2,4 +2,4 @@
 
 require "sudokku_cli"
 
-SudokkuCli::CLI.start(ARGV)
+SudokkuCli.start(ARGV)

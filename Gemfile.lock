@@ -2,12 +2,26 @@ PATH
   remote: .
   specs:
     sudokku_cli (0.1.0)
+      json
+      netrc
+      open-uri
 
 GEM
   remote: https://rubygems.org/
   specs:
+    date (3.3.3)
+    json (2.6.1)
     minitest (5.17.0)
+    netrc (0.11.0)
+    open-uri (0.2.0)
+      stringio
+      time
+      uri
     rake (13.0.6)
+    stringio (3.0.1)
+    time (0.2.0)
+      date
+    uri (0.11.0)
 
 PLATFORMS
   x86_64-linux
