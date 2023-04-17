@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    sudokku_cli (0.1.0)
+    sudokku_cli (0.1.1)
       json
       netrc
       open-uri
