@@ -1,0 +1,5 @@
+#!/usr/bin/env ruby
+
+require "sudokku_cli"
+
+SudokkuCli::CLI.start(ARGV)

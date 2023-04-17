@@ -1,8 +1,57 @@
 # frozen_string_literal: true
 
 require_relative "sudokku_cli/version"
+require 'netrc'
+require 'json'
+require 'open-uri'
 
 module SudokkuCli
   class Error < StandardError; end
-  # Your code goes here...
+
+  ENDPOINT = 'https://git.sudokku.com'
+
+  def send_request(path, params = {})
+    uri = URI.join(ENDPOINT, path)
+    uri.query = URI.encode_www_form(params)
+    request = Net::HTTP::Get.new(uri.request_uri)
+    netrc = Netrc.read
+    user, password = netrc[uri.host]
+    request.basic_auth(user, password)
+    response = Net::HTTP.start(uri.host, uri.port, use_ssl: true) do |http|
+      http.request(request)
+    end
+    JSON.parse(response.body)
+  end
+
+  def login
+    response = send_request('/login')
+    if response['status'] == 'success'
+      puts 'You are logged in!'
+    else
+      # credentials are not valid, prompt user to authenticate via browser
+      puts "Please visit #{response['url']} to authenticate."
+      # check for new credentials
+      loop do
+        response = send_request('/check-authentication', { 'token': response['token'] })
+        if response['status'] == 'success'
+          # new credentials received, save to .netrc file
+          netrc = Netrc.read
+          netrc[ENDPOINT] = response['credentials']
+          netrc.save
+          puts 'Successfully logged in!'
+          break
+        end
+        sleep(5) # wait 5 seconds before checking again
+      end
+    end
+  end
+
+  def self.start(args)
+    case args[0]
+    when "login"
+      login
+    else
+      puts "Invalid command. Please use `sudokku login`."
+    end
+  end
 end
