@@ -30,4 +30,5 @@ Gem::Specification.new do |spec|
   spec.add_runtime_dependency "netrc"
   spec.add_runtime_dependency "json"
   spec.add_runtime_dependency "open-uri"
+  spec.add_runtime_dependency "net-http"
 end

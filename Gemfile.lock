@@ -3,6 +3,7 @@ PATH
   specs:
     sudokku_cli (0.1.1)
       json
+      net-http
       netrc
       open-uri
 
@@ -12,6 +13,11 @@ GEM
     date (3.3.3)
     json (2.6.1)
     minitest (5.17.0)
+    net-http (0.2.0)
+      net-protocol
+      uri
+    net-protocol (0.2.1)
+      timeout
     netrc (0.11.0)
     open-uri (0.2.0)
       stringio
@@ -21,6 +27,7 @@ GEM
     stringio (3.0.1)
     time (0.2.0)
       date
+    timeout (0.3.2)
     uri (0.11.0)
 
 PLATFORMS
