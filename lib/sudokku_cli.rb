@@ -4,13 +4,14 @@ require_relative "sudokku_cli/version"
 require 'netrc'
 require 'json'
 require 'open-uri'
+require 'net/http'
 
 module SudokkuCli
   class Error < StandardError; end
 
   ENDPOINT = 'https://git.sudokku.com'
 
-  def send_request(path, params = {})
+  def self.send_request(path, params = {})
     uri = URI.join(ENDPOINT, path)
     uri.query = URI.encode_www_form(params)
     request = Net::HTTP::Get.new(uri.request_uri)
@@ -23,13 +24,14 @@ module SudokkuCli
     JSON.parse(response.body)
   end
 
-  def login
+  def self.login
     response = send_request('/login')
     if response['status'] == 'success'
       puts 'You are logged in!'
     else
       # credentials are not valid, prompt user to authenticate via browser
       puts "Please visit #{response['url']} to authenticate."
+      puts "Waiting for authentication..."
       # check for new credentials
       loop do
         response = send_request('/check-authentication', { 'token': response['token'] })
