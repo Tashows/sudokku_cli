@@ -10,7 +10,7 @@ require 'dotenv/load'
 module SudokkuCli
   class Error < StandardError; end
 
-  ENDPOINT = ENV["ENDPOINT"] || 'https://git.sudokku.com'
+  ENDPOINT = ENV["SUDOKKU_GIT_ENDPOINT"] || 'https://git.sudokku.com'
 
   def self.send_request(path, params = {})
     uri = URI.join(ENDPOINT, path)
