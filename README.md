@@ -9,8 +9,8 @@ A CLI program for logging in to Sudokku git server.
 ## Usage
 
 Use `sudokku login` to log in to the Sudokku git server. This will try to connect to the git server using credentials saved
-in the .netrc file. If the credentials are not found, or are expired, you will be given a url to visit where you can log in.
-After successfully logging in, the program will save the newly generated credentials to the .netrc file.
+in your .netrc file. If the credentials are not found, or are expired, you will be given a url to visit where you can log in.
+After successfully logging in, the program will save the newly generated credentials to your .netrc file.
 
 [//]: # (## Development)
 
