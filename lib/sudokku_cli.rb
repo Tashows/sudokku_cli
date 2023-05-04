@@ -19,7 +19,7 @@ module SudokkuCli
     netrc = Netrc.read
     user, password = netrc[uri.host]
     request.basic_auth(user, password)
-    response = Net::HTTP.start(uri.host, uri.port, use_ssl: true) do |http|
+    response = Net::HTTP.start(uri.host, uri.port) do |http|
       http.request(request)
     end
     JSON.parse(response.body)
@@ -30,16 +30,18 @@ module SudokkuCli
     if response['status'] == 'success'
       puts 'You are logged in!'
     else
+      token = response['token']
       # credentials are not valid, prompt user to authenticate via browser
       puts "Please visit #{response['url']} to authenticate."
       puts "Waiting for authentication..."
       # check for new credentials
       loop do
-        response = send_request('/check-authentication', { 'token': response['token'] })
+        response = send_request('/check-authentication', { token: token })
         if response['status'] == 'success'
           # new credentials received, save to .netrc file
           netrc = Netrc.read
-          netrc[ENDPOINT] = response['credentials']
+          host = ENDPOINT.gsub('https://', '').gsub('http://', '')
+          netrc[host] = response['credentials']
           netrc.save
           puts 'Successfully logged in!'
           break
