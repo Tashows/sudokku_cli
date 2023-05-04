@@ -14,12 +14,13 @@ module SudokkuCli
 
   def self.send_request(path, params = {})
     uri = URI.join(ENDPOINT, path)
+    use_ssl = uri.scheme == 'https'
     uri.query = URI.encode_www_form(params)
     request = Net::HTTP::Get.new(uri.request_uri)
     netrc = Netrc.read
     user, password = netrc[uri.host]
     request.basic_auth(user, password)
-    response = Net::HTTP.start(uri.host, uri.port) do |http|
+    response = Net::HTTP.start(uri.host, uri.port, use_ssl: use_ssl) do |http|
       http.request(request)
     end
     JSON.parse(response.body)
