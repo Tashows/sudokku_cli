@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    sudokku_cli (0.1.4)
+    sudokku_cli (0.1.6)
       dotenv
       json
       net-http
