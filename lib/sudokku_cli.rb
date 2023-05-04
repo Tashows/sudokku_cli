@@ -5,11 +5,12 @@ require 'netrc'
 require 'json'
 require 'open-uri'
 require 'net/http'
+require 'dotenv/load'
 
 module SudokkuCli
   class Error < StandardError; end
 
-  ENDPOINT = 'https://git.sudokku.com'
+  ENDPOINT = ENV["ENDPOINT"] || 'https://git.sudokku.com'
 
   def self.send_request(path, params = {})
     uri = URI.join(ENDPOINT, path)
