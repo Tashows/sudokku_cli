@@ -9,3 +9,4 @@
 .idea/
 .secrets.yml
 *.gem
+.env
