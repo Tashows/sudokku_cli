@@ -43,7 +43,7 @@ module SudokkuCli
           host = ENDPOINT.gsub('https://', '').gsub('http://', '')
           netrc[host] = response['credentials']
           netrc.save
-          puts 'Successfully logged in!'
+          puts "Successfully logged in as #{response['credentials'][0]}!"
           break
         end
         sleep(5) # wait 5 seconds before checking again
