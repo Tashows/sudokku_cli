@@ -11,9 +11,13 @@ PATH
 GEM
   remote: https://rubygems.org/
   specs:
+    addressable (2.8.4)
+      public_suffix (>= 2.0.2, < 6.0)
     date (3.3.3)
     dotenv (2.8.1)
     json (2.6.1)
+    launchy (2.5.2)
+      addressable (~> 2.8)
     minitest (5.17.0)
     net-http (0.2.0)
       net-protocol
@@ -25,6 +29,7 @@ GEM
       stringio
       time
       uri
+    public_suffix (5.0.3)
     rake (13.0.6)
     stringio (3.0.1)
     time (0.2.0)
@@ -37,6 +42,7 @@ PLATFORMS
 
 DEPENDENCIES
   dotenv
+  launchy
   minitest (~> 5.0)
   rake (~> 13.0)
   sudokku_cli!
