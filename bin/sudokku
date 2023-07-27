@@ -1,5 +1,5 @@
 #!/usr/bin/env ruby
 
-require "sudokku_cli"
+require_relative '../lib/sudokku_cli'
 
 SudokkuCli.start(ARGV)

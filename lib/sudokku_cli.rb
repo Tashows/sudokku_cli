@@ -6,6 +6,7 @@ require 'json'
 require 'open-uri'
 require 'net/http'
 require 'dotenv/load'
+require 'launchy'
 
 module SudokkuCli
   class Error < StandardError; end
@@ -34,6 +35,7 @@ module SudokkuCli
       token = response['token']
       # credentials are not valid, prompt user to authenticate via browser
       puts "Please visit #{response['url']} to authenticate."
+      Launchy.open response['url']
       puts "Waiting for authentication..."
       # check for new credentials
       loop do
