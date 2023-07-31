@@ -4,6 +4,7 @@ PATH
     sudokku_cli (0.1.7)
       dotenv
       json
+      launchy
       net-http
       netrc
       open-uri
