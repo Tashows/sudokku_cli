@@ -55,6 +55,7 @@ module SudokkuCli
   end
 
   def self.start(args)
+    warn "[DEPRECATION] This gem has been renamed to fridaybuilds_cli and this version is no longer be supported. Please switch to fridaybuilds_cli as soon as possible."
     case args[0]
     when "login"
       login

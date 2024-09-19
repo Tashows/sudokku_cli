@@ -26,6 +26,11 @@ Gem::Specification.new do |spec|
   spec.bindir = "bin"
   spec.executables = ["sudokku"]
   spec.require_paths = ["lib"]
+  spec.post_install_message = <<-MESSAGE
+  !    The 'sudokku_cli' gem has been deprecated and has been replaced by 'fridaybuilds_cli'.
+  !    See: https://rubygems.org/gems/fridaybuilds_cli
+  !    And: https://github.com/FridayBuilds/fridaybuilds_cli
+  MESSAGE
 
   spec.add_runtime_dependency "netrc"
   spec.add_runtime_dependency "json"

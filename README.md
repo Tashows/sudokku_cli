@@ -1,3 +1,5 @@
+!! Moved to [fridaybuilds_cli](https://github.com/FridayBuilds/fridaybuilds_cli) !!
+
 # SudokkuCli
 
 A CLI program for logging in to Sudokku git server.
